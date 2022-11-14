@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4d063c06-483a-4a79-a9c6-9390c1f923a7" name="birmanServer">
+        <fileTransfer accessType="SFTP" host="85.192.63.59" port="22" sshConfigId="c814f1c9-0ce7-4c6b-82b8-43d354903852" sshConfig="root@85.192.63.59:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
