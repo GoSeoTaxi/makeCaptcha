@@ -10,8 +10,6 @@ import (
 	"net/http"
 )
 
-const port = 8082
-
 func main() {
 
 	fmt.Print("starting...")
