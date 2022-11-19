@@ -58,6 +58,16 @@ var (
 	flagImgH  = flag.Int("height", 150, "image captcha height")
 )
 
+func (jr *Job_Result) Write(p []byte) (n int, err error) {
+	//	s2 := strings.TrimRight(string(p), "\n ")
+	jr.PicB64 = append(jr.PicB64, p)
+	return jr.PicB64, nil
+}
+
+type Job_Result struct {
+	PicB64 []byte
+}
+
 func CreateCaptcha2() (string, string, error) {
 
 	f, err := os.OpenFile("01.png", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0600)
@@ -70,6 +80,10 @@ func CreateCaptcha2() (string, string, error) {
 
 	d := captcha.RandomDigits(*flagLen)
 	w = captcha.NewImage("", d, *flagImgW, *flagImgH)
+
+	jr := new(Job_Result)
+	w.WriteTo(jr)
+	fmt.Println(jr)
 
 	w.WriteTo(f)
 

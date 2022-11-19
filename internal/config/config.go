@@ -19,7 +19,6 @@ func InitLogger(debug bool, projectID string) (*zap.Logger, error) {
 	logger, err := zapConfig.Build(zap.Fields(
 		zap.String("projectID", projectID),
 	))
-
 	if err != nil {
 		return nil, err
 	}
