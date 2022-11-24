@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-const timeOutConst = 1
+const timeOutConst = 5
 
 func CaptchaRouter(ctx context.Context, c chan models.SendData, logger *zap.Logger) chi.Router {
 

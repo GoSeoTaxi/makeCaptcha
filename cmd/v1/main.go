@@ -10,6 +10,7 @@ import (
 	"main/internal/models"
 	"main/internal/preGenerator"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -31,8 +32,7 @@ func main() {
 	defer cancel()
 
 	c1 := preGenerator.StartGenerator(logger)
-
-	go printerChanel(c1)
+	//go printerChanel(c1, logger)
 
 	// prepare handles
 	r := handlers.CaptchaRouter(ctx, c1, logger)
@@ -43,11 +43,9 @@ func main() {
 
 }
 
-func printerChanel(c chan models.SendData) {
-
+func printerChanel(c chan models.SendData, logger *zap.Logger) {
 	for {
-		fmt.Println(len(c))
-		time.Sleep(1 * time.Second)
+		logger.Info("Queue", zap.String("queue - chan", time.Now().Format("2006-01-02 15:04:05")+" q="+strconv.Itoa(len(c))))
+		time.Sleep(100 * time.Microsecond)
 	}
-
 }
