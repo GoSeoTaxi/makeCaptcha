@@ -3,7 +3,6 @@ package handlers
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"go.uber.org/zap"
 	"main/internal/models"
 	"net/http"
@@ -26,20 +25,7 @@ func NewHandler(ctx context.Context, c chan models.SendData, logger *zap.Logger)
 func (h *Handler) HandlerGetCaptcha() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		fmt.Println(h.ctx.Deadline())
-
 		h.logger.Debug("getting captcha")
-
-		/*		passWordString, pic, err := models.CreatorCaptcha()
-
-
-				if err != nil {
-					http.Error(w, "Server Error", http.StatusInternalServerError)
-					return
-				}*/
-
-		//		passWordString := "1"
-		//		pic := "2"
 
 		data := <-h.chanel
 		json, err := json.Marshal(models.SendData{PassWord: data.PassWord, Picture: data.Picture})
