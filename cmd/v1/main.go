@@ -7,11 +7,8 @@ import (
 	"log"
 	"main/internal/config"
 	"main/internal/handlers"
-	"main/internal/models"
 	"main/internal/preGenerator"
 	"net/http"
-	"strconv"
-	"time"
 )
 
 func main() {
@@ -31,11 +28,11 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	c1 := preGenerator.StartGenerator(logger)
+	c1 := preGenerator.StartGenerator(logger, cfg)
 	//go printerChanel(c1, logger)
 
 	// prepare handles
-	r := handlers.CaptchaRouter(ctx, c1, logger)
+	r := handlers.CaptchaRouter(ctx, c1, cfg, logger)
 	srv := &http.Server{Addr: cfg.Endpoint, Handler: r}
 
 	logger.Info("Start serving on", zap.String("endpoint name", cfg.Endpoint))
@@ -43,9 +40,9 @@ func main() {
 
 }
 
-func printerChanel(c chan models.SendData, logger *zap.Logger) {
+/*func printerChanel(c chan models.SendData, logger *zap.Logger) {
 	for {
 		logger.Info("Queue", zap.String("queue - chan", time.Now().Format("2006-01-02 15:04:05")+" q="+strconv.Itoa(len(c))))
 		time.Sleep(100 * time.Microsecond)
 	}
-}
+}*/
