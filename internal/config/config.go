@@ -27,15 +27,20 @@ func InitLogger(debug bool, projectID string) (*zap.Logger, error) {
 }
 
 type Config struct {
-	Endpoint string `env:"RUN_ADDRESS" envDefault:":8082"`
-	AppName  string `env:"APP_NAME" envDefault:"CaptchaMaker"`
-	Debug    bool   `env:"CAP_MAKER_APP_SERVER_DEBUG"`
+	Endpoint   string `env:"RUN_ADDRESS" envDefault:":8082"`
+	TimeOut500 string `env:"TIME_OUT" envDefault:"1"`
+	SizeCache  string `env:"SIZE_CACHE" envDefault:"100000"`
+	AppName    string `env:"APP_NAME" envDefault:"CaptchaMaker"`
+	Debug      bool   `env:"CAP_MAKER_APP_SERVER_DEBUG"`
 }
 
 // InitConfig initialises config, first from flags, then from env, so that env overwrites flags
 func InitConfig() (*Config, error) {
 	var cfg Config
-	flag.StringVar(&cfg.Endpoint, "a", "127.0.0.1:8081", "server address as host:port")
+	flag.StringVar(&cfg.Endpoint, "a", ":8081", "server address as host:port")
+	flag.StringVar(&cfg.TimeOut500, "t", "1", "timeout request")
+	flag.StringVar(&cfg.SizeCache, "s", "100000", "size cache")
+
 	flag.BoolVar(&cfg.Debug, "debug", true, "key for hash function")
 	flag.Parse()
 
