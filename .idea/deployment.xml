@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="birmanServer" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="TestServer_captcha" remoteFilesAllowedToDisappearOnAutoupload="false" confirmBeforeUploading="false" showNewOnTargetInSync="false">
+    <option name="confirmBeforeUploading" value="false" />
     <serverData>
       <paths name="1">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="TestServer_captcha">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/go" local="$PROJECT_DIR$" web="/" />
+            <mapping local="" />
           </mappings>
         </serverdata>
       </paths>

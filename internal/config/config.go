@@ -37,10 +37,9 @@ type Config struct {
 // InitConfig initialises config, first from flags, then from env, so that env overwrites flags
 func InitConfig() (*Config, error) {
 	var cfg Config
-	flag.StringVar(&cfg.Endpoint, "a", ":8081", "server address as host:port")
+	flag.StringVar(&cfg.Endpoint, "a", ":8082", "server address as host:port")
 	flag.StringVar(&cfg.TimeOut500, "t", "1", "timeout request")
 	flag.StringVar(&cfg.SizeCache, "s", "100000", "size cache")
-
 	flag.BoolVar(&cfg.Debug, "debug", true, "key for hash function")
 	flag.Parse()
 
